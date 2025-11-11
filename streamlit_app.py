@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("🎈 My ELIK 69696969")
+st.title("🎈 My ELIK 69696969 kusto himmel")
 st.write(
     "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
 )
