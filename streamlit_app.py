@@ -1,71 +1,17 @@
 import streamlit as st
+from style import load_css  # Impor fungsi CSS
+from header import render_header # Impor fungsi header
 
 # --- KONFIGURASI HALAMAN ---
 st.set_page_config(
     page_title="Strukify - Home",
-    page_icon="🧾",  # Emoji struk
-    layout="wide"  # Menggunakan layout lebar agar sesuai prototipe
+    page_icon="🧾",
+    layout="wide"
 )
 
-# --- CSS KUSTOM ---
-# Ini untuk membuat kotak biru bernomor dan mengatur beberapa padding
-st.markdown("""
-<style>
-    /* Mengatur jarak antar kolom grid */
-    .st-emotion-cache-1r6slb0 {
-        gap: 3rem;
-    }
-            
-    /* CSS untuk kotak biru bernomor */
-    .step-number {
-        background-color: #0d6efd; /* Warna biru (mirip prototipe) */
-        color: white;
-        font-size: 2.5rem;
-        font-weight: bold;
-        padding: 1.5rem;
-        border-radius: 10px;
-        display: inline-block;
-        width: 80px;
-        height: 80px;
-        text-align: center;
-        line-height: 2.5rem; /* Menyesuaikan agar angka ditengah */
-        margin-bottom: 1rem;
-    }
-            
-    /* Menghilangkan padding atas bawaan streamlit */
-    .st-emotion-cache-18ni7ap {
-        padding-top: 2rem;
-    }
-    .st-emotion-cache-z5fcl4 {
-        padding-top: 3rem;
-    }
-            
-</style>
-""", unsafe_allow_html=True)
-
-
-# --- 1. HEADER ---
-# Kita gunakan kolom untuk meniru logo di kiri dan tombol di kanan
-col_logo, col_nav, col_login, col_signup = st.columns([2, 5, 1, 1])
-
-with col_logo:
-    # Menggunakan markdown untuk logo agar lebih besar dan berwarna
-    st.markdown("<h1 style='color: #0d6efd;'>Strukify</h1>", unsafe_allow_html=True)
-
-# Kolom tengah ini untuk navigasi (dijelaskan di bawah)
-with col_nav:
-    st.write("") # Kosongkan saja untuk sekarang
-
-with col_login:
-    # Tombol dibuat rata atas dengan tombol sign up
-    st.write("<br>", unsafe_allow_html=True)
-    st.button("Login", use_container_width=True)
-
-with col_signup:
-    st.write("<br>", unsafe_allow_html=True)
-    st.button("Sign Up", type="primary", use_container_width=True)
-
-st.divider()
+# --- 1. MEMUAT ASET (CSS & HEADER) ---
+load_css()
+render_header()
 
 # --- 2. HERO SECTION ---
 with st.container():
