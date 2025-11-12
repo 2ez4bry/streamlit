@@ -57,5 +57,26 @@ def load_css():
             color: white; /* Teks putih saat hover */
         }
                 
+                /* --- Extract.py --- */
+
+        /* Style file uploader agar tombolnya biru */
+        .stFileUploader button {
+        background-color: #0d6efd;
+        color: white;
+        border: 1px solid #0d6efd;
+        }
+        .stFileUploader button:hover {
+        background-color: #0b5ed7;
+        border: 1px solid #0b5ed7;
+        color: white;
+        }
+        /* Style teks label dropzone */
+        .stFileUploader label {
+        font-size: 1.1rem !important;
+        font-weight: 500;
+        color: #555; /* Warna abu-abu gelap */
+        }
+
+/* --- Akhir tambahan --- */
     </style>
     """, unsafe_allow_html=True)
