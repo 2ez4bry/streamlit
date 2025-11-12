@@ -14,13 +14,13 @@ load_css()
 # GANTI INI: dari 'render_header()' menjadi 'selected = ...'
 selected = render_header(default_index=0) # 0 karena ini halaman "Home"
 
-# --- LOGIKA PINDAH HALAMAN INI ---
+# --- TAMBAHKAN LOGIKA PINDAH HALAMAN INI ---
 if selected == "Extract":
-    st.switch_page("streamlit/pages/Extract.py")
+    st.switch_page("pages/Extract.py")
 if selected == "History":
-    st.switch_page("streamlit/pages/History.py")
+    st.switch_page("pages/History.py")
 if selected == "Analysis":
-    st.switch_page("streamlit/pages/Analysis.py")
+    st.switch_page("pages/Analysis.py")
 # Tidak perlu 'if selected == "Home":' karena kita sudah di sini.
 
 # --- 2. HERO SECTION ---

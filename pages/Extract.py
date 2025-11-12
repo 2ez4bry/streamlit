@@ -19,11 +19,11 @@ selected = render_header(default_index=1)
 
 # --- LOGIKA PINDAH HALAMAN ---
 if selected == "Home":
-    st.switch_page("streamlit/streamlit_app.py")
+    st.switch_page("streamlit_app.py")
 if selected == "History":
-    st.switch_page("streamlit/pages/History.py")
+    st.switch_page("pages/History.py")
 if selected == "Analysis":
-    st.switch_page("streamlit/pages/Analysis.py")
+    st.switch_page("pages/Analysis.py")
 
 # --- 2. JUDUL KONTEN ---
 # Menggunakan markdown untuk membuat semua teks rata tengah
