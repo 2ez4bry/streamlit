@@ -6,6 +6,11 @@ def load_css():
     """
     st.markdown("""
     <style>
+        /* Sembunyikan sidebar bawaan Streamlit */
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+                
         /* Mengatur jarak antar kolom grid */
         .st-emotion-cache-1r6slb0 {
             gap: 3rem;

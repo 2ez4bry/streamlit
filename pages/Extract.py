@@ -13,7 +13,18 @@ st.set_page_config(
 
 # --- 1. MEMUAT ASET (CSS & HEADER) ---
 load_css()
-render_header()
+# Panggil header & tangkap halaman yang dipilih
+# "Extract" adalah item ke-2 di menu, jadi index-nya 1 (dimulai dari 0)
+selected = render_header(default_index=1)
+
+# --- LOGIKA PINDAH HALAMAN ---
+# Jika pengguna mengklik halaman lain, pindah ke halaman itu
+if selected == "Home":
+    st.switch_page("streamlit_app.py")
+if selected == "History":
+    st.switch_page("pages/History.py")
+if selected == "Analysis":
+    st.switch_page("pages/Analysis.py")
 
 # --- 2. JUDUL KONTEN ---
 # Menggunakan markdown untuk membuat semua teks rata tengah
