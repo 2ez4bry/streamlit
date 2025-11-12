@@ -18,7 +18,6 @@ load_css()
 selected = render_header(default_index=1)
 
 # --- LOGIKA PINDAH HALAMAN ---
-# Jika pengguna mengklik halaman lain, pindah ke halaman itu
 if selected == "Home":
     st.switch_page("streamlit_app.py")
 if selected == "History":
