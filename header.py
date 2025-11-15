@@ -27,7 +27,7 @@ def render_header(default_index=0): # Kita tambahkan parameter default_index
                 "container": {
                     "padding": "0!important", 
                     "background-color": "transparent",
-                    "margin-top": "-10px" # Sesuaikan agar pas
+                    "margin-top": "5px" # Sesuaikan agar pas
                 }, 
                 # Style untuk ikon
                 "icon": {"color": "#888", "font-size": "16px"}, 
@@ -37,7 +37,7 @@ def render_header(default_index=0): # Kita tambahkan parameter default_index
                     "font-weight": "600",
                     "color": "#888", # Warna teks (abu-abu)
                     "text-align": "center",
-                    "margin":"0px 8px",
+                    "margin":"",
                     "--hover-color": "#444" # Warna saat kursor di atas
                 },
                 # Style untuk link yang sedang aktif/dipilih
