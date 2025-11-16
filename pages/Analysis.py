@@ -17,12 +17,12 @@ load_css()
 selected = render_header(default_index=3) 
 
 # --- LOGIKA PINDAH HALAMAN ---
-if selected == "Home":
-    st.switch_page("streamlit_app.py")
-if selected == "Extract":
-    st.switch_page("pages/Extract.py")
-if selected == "History":
-    st.switch_page("pages/History.py")
+#if selected == "Home":
+#    st.switch_page("streamlit_app.py")
+#if selected == "Extract":
+#    st.switch_page("pages/Extract.py")
+#if selected == "Analysis":
+#    st.switch_page("pages/Analysis.py")
 
 # --- (DATA KOSONG) ---
 # Data dikosongkan sesuai permintaan.
