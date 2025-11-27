@@ -1,63 +1,66 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-def render_header(default_index=0): # Kita tambahkan parameter default_index
+def render_header(current_page_index=0):
     """
-    Merender header dengan logo, navigasi horizontal, dan tombol login.
+    Merender header dengan logo dan navigasi horizontal.
+    Menggunakan class CSS dari style.py.
     """
-    # Kolom tetap sama
-    col_logo, col_nav, col_login, col_signup = st.columns([2, 5, 1, 1])
+    
+    col_logo, col_nav = st.columns([1, 4], vertical_alignment="center") 
 
     with col_logo:
-        st.markdown("<h1 style='color: #0d6efd;'>Strukify</h1>", unsafe_allow_html=True)
+        # PERUBAHAN: Sekarang kita pakai class='header-logo'
+        # CSS-nya sudah diatur di style.py
+        st.markdown(
+            "<h2 class='header-logo'>Strukify</h2>", 
+            unsafe_allow_html=True
+        )
 
     with col_nav:
-        # Beri sedikit jarak dari atas
-        st.write("<br>", unsafe_allow_html=True) 
-        
-        # Ini adalah menu navigasi horizontal
+        # Style menu ini BIARKAN DISINI (jangan dipindah ke style.py)
+        # karena library option_menu membutuhkannya sebagai parameter Python.
         selected = option_menu(
-            menu_title=None,  # Wajib ada, tapi kita kosongkan
-            options=["Home", "Extract", "History", "Analysis"], # Sesuai prototipe
-            icons=["house-fill", "search", "clock-history", "bar-chart-line-fill"], # Ikon opsional
-            default_index=default_index,  # Halaman mana yang aktif
+            menu_title=None,
+            options=["Home", "Extract", "History", "About Us"],
+            icons=["house-fill", "search", "clock-history", "info-circle-fill"],
+            default_index=current_page_index,
             orientation="horizontal",
             styles={
-                # Style untuk container menu
                 "container": {
-                    "padding": "0!important", 
+                    "padding": "0!important",
                     "background-color": "transparent",
-                    "margin-top": "5px" # Sesuaikan agar pas
+                    "display": "flex",
+                    "justify-content": "flex-end",
+                    "padding-right": "20px !important" 
                 }, 
-                # Style untuk ikon
-                "icon": {"color": "#888", "font-size": "16px"}, 
-                # Style untuk link
+                "icon": {"color": "#888", "font-size": "14px"}, 
                 "nav-link": {
-                    "font-size": "16px",
+                    "font-size": "14px",
                     "font-weight": "600",
-                    "color": "#888", # Warna teks (abu-abu)
-                    "text-align": "center",
-                    "margin":"",
-                    "--hover-color": "#444" # Warna saat kursor di atas
+                    "color": "#888",
+                    "margin": "0px 5px",
+                    "--hover-color": "transparent"
                 },
-                # Style untuk link yang sedang aktif/dipilih
                 "nav-link-selected": {
                     "background-color": "transparent",
-                    "color": "white" # Warna teks (putih/terang)
+                    "color": "#0d6efd",
+                    "font-weight": "bold"
                 },
             }
         )
     
-    # Tombol login/signup tetap sama
-    with col_login:
-        st.write("<br>", unsafe_allow_html=True)
-        st.button("Login", use_container_width=True)
-
-    with col_signup:
-        st.write("<br>", unsafe_allow_html=True)
-        st.button("Sign Up", type="primary", use_container_width=True)
-
     st.divider()
     
-    # Kembalikan halaman mana yang diklik pengguna
-    return selected
+    # --- LOGIKA NAVIGASI ---
+    if selected == "Home" and current_page_index != 0:
+        st.switch_page("streamlit_app.py")
+        
+    elif selected == "Extract" and current_page_index != 1:
+        st.switch_page("pages/Extract.py")
+        
+    elif selected == "History" and current_page_index != 2:
+        st.switch_page("pages/History.py")
+        
+    elif selected == "About Us" and current_page_index != 3:
+        st.switch_page("pages/AboutUs.py")

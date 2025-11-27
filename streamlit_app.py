@@ -12,15 +12,15 @@ st.set_page_config(
 # --- 1. MEMUAT ASET (CSS & HEADER) ---
 load_css()
 # GANTI INI: dari 'render_header()' menjadi 'selected = ...'
-selected = render_header(default_index=0) # 0 karena ini halaman "Home"
+render_header(current_page_index=0) # 0 karena ini halaman "Home"
 
 # --- TAMBAHKAN LOGIKA PINDAH HALAMAN INI ---
-if selected == "Extract":
-    st.switch_page("pages/Extract.py")
-if selected == "History":
-    st.switch_page("pages/History.py")
-if selected == "Analysis":
-    st.switch_page("pages/Analysis.py")
+#if selected == "Extract":
+#    st.switch_page("pages/Extract.py")
+#if selected == "History":
+#    st.switch_page("pages/History.py")
+#if selected == "Analysis":
+#    st.switch_page("pages/Analysis.py")
 # Tidak perlu 'if selected == "Home":' karena kita sudah di sini.
 
 # --- 2. HERO SECTION ---
@@ -43,12 +43,13 @@ with st.container():
     # Trik untuk membuat tombol di tengah
     col_btn1, col_btn2, col_btn3 = st.columns([2, 1, 2])
     with col_btn2:
-        st.button(
+        if st.button(
             "Get Started!", 
             type="primary", 
             help="Start extracting receipts!", 
             use_container_width=True
-        )
+        ):
+            st.switch_page("pages/Extract.py")
 
 st.write("<br><br><br>", unsafe_allow_html=True) # Memberi spasi besar
 

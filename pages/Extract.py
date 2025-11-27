@@ -15,7 +15,7 @@ st.set_page_config(
 load_css()
 # Panggil header & tangkap halaman yang dipilih
 # "Extract" adalah item ke-2 di menu, jadi index-nya 1 (dimulai dari 0)
-selected = render_header(default_index=1)
+render_header(current_page_index=1)
 
 # --- LOGIKA PINDAH HALAMAN ---
 #if selected == "Home":

@@ -14,7 +14,7 @@ st.set_page_config(
 load_css()
 
 # "History" adalah item ke-3 di menu, jadi index-nya 2
-selected = render_header(default_index=2) 
+render_header(current_page_index=2) 
 
 # --- LOGIKA PINDAH HALAMAN ---
 #if selected == "Home":
