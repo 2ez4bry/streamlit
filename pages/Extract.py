@@ -152,11 +152,23 @@ def process_receipt_image(uploaded_file, model, reader):
             y1, x1, y2, x2 = int(best_box[0]*h), int(best_box[1]*w), int(best_box[2]*h), int(best_box[3]*w)
         else:
             y1, x1, y2, x2 = int(best_box[0]), int(best_box[1]), int(best_box[2]), int(best_box[3])
-        roi = img[y1:y2, x1:x2]
+        
+        # --- PERBAIKAN DI SINI ---
+        # Pastikan koordinat ada di dalam batas gambar
+        y1, x1 = max(0, y1), max(0, x1)
+        y2, x2 = min(h, y2), min(w, x2)
+
+        # Cek apakah area crop valid (tidak 0 atau negatif)
+        if y2 > y1 and x2 > x1:
+            roi = img[y1:y2, x1:x2]
+        else:
+            # Jika box invalid, gunakan gambar full
+            roi = img 
 
     # Zoom & OCR
+    # Sekarang aman karena roi dijamin tidak kosong
     roi_enhanced = cv2.resize(roi, None, fx=2.0, fy=2.0, interpolation=cv2.INTER_CUBIC)
-    raw_text = reader.readtext(roi_enhanced, detail=0)
+    raw_text = reader.readtext(roi_enhanced, detail=0)  
     
     return roi, raw_text
 
@@ -259,18 +271,35 @@ if 'extracted_data' in st.session_state:
 
         st.write("<br>", unsafe_allow_html=True)
         
-        # Tombol Simpan
+        # --- PERBAIKAN LOGIKA SAVE ---
         if st.button("Save to History", use_container_width=True):
-            # 1. Siapkan Data
+            # 1. AMBIL DATA DARI HASIL EDIT (Bukan hasil scan awal)
+            
+            # A. Ambil Item dari Tabel Editor
+            # edited_df adalah variabel hasil dari st.data_editor di atas
+            if edited_df is not None:
+                final_items = edited_df.to_dict('records')
+            else:
+                final_items = []
+            
+            # B. Bersihkan Total (Hapus titik/koma agar jadi angka murni)
+            # Contoh input: "100.000" -> jadi integer 100000
+            try:
+                clean_total_str = str(total_val).replace(',', '').replace('.', '')
+                clean_total = int(clean_total_str)
+            except:
+                clean_total = 0
+
+            # 2. Siapkan Record Baru
             new_record = {
-                "id": int(pd.Timestamp.now().timestamp()), # ID unik berdasarkan waktu
-                "store": data['store'],
-                "date": data['date'],
-                "total": data['total'],
-                "items": str(data['items']) # Konversi list item ke string agar bisa masuk CSV
+                "id": int(pd.Timestamp.now().timestamp()), 
+                "store": store_name,     # <--- Pakai variabel input text
+                "date": date_val,        # <--- Pakai variabel input text
+                "total": clean_total,    # <--- Pakai total yang sudah dibersihkan
+                "items": str(final_items) # Simpan list sebagai string agar masuk CSV
             }
             
-            # 2. Simpan ke CSV (Append Mode)
+            # 3. Simpan ke CSV
             history_file = "history_data.csv"
             df_new = pd.DataFrame([new_record])
             
@@ -279,5 +308,5 @@ if 'extracted_data' in st.session_state:
             else:
                 df_new.to_csv(history_file, mode='a', header=False, index=False)
             
-            st.toast("Data saved to History!", icon="✅")
+            st.toast("Data saved successfully with YOUR EDITS!", icon="✅")
             st.balloons()

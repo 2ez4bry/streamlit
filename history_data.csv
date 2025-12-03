@@ -2,3 +2,7 @@ id,store,date,total,items
 1764125512,FamilyMart,19/11/2025,39000,"[{'name': 'Chıcken Katsu Set', 'price': 22000, 'qty': 1}, {'name': 'DISKON / POTONGAN', 'price': -2000, 'qty': 1}, {'name': 'ICF COFFEE JELLY LARGE', 'price': 19000, 'qty': 1}]"
 1764125732,SoNo,,96000,"[{'name': 'Curry Rice', 'price': 67000, 'qty': 1}, {'name': 'Aka Tori Karaage', 'price': 18000, 'qty': 1}, {'name': 'Chikuwa', 'price': 11000, 'qty': 1}]"
 1764125756,SoNo,,96000,"[{'name': 'Curry Rice', 'price': 67000, 'qty': 1}, {'name': 'Aka Tori Karaage', 'price': 18000, 'qty': 1}, {'name': 'Chikuwa', 'price': 11000, 'qty': 1}]"
+1764766789,"057|272025 10,41",,10000,"[{'name': 'Steam Rice [G]', 'price': 10000, 'qty': 1}]"
+1764766928,"057|272025 10,41",,10000,"[{'name': 'Steam Rice [G]', 'price': 10000, 'qty': 1}]"
+1764767244,"057|272025 10,41",,100000,"[{'name': 'Steam Rice [G]', 'price': 10000, 'qty': 10}]"
+1764767281,"057|272025 10,41",,10000,"[{'name': 'Steam Rice [G]', 'price': 10000, 'qty': 1}]"
